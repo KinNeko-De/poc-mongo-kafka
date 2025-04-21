@@ -33,4 +33,14 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'kafka:9092'
     depends_on:
       - kafka
+  kafdrop:
+    image: 'obsidiandynamics/kafdrop:latest'
+    ports:
+      - '9000:9000'
+    networks:
+      - app-tier
+    environment:
+      KAFKA_BROKERCONNECT: 'kafka:9092'
+    depends_on:
+      - kafka
   
