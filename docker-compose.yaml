@@ -21,6 +21,12 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT'
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: '0@kafka:9093'
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
   kafka-ui:
     image: 'provectuslabs/kafka-ui:latest'
     ports:
@@ -32,7 +38,8 @@ services:
       KAFKA_CLUSTERS_0_NAME: 'local'
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'kafka:9092'
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
   kafdrop:
     image: 'obsidiandynamics/kafdrop:latest'
     ports:
@@ -42,5 +49,6 @@ services:
     environment:
       KAFKA_BROKERCONNECT: 'kafka:9092'
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
   
