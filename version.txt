@@ -1,0 +1,1 @@
+docker exec poc-mongo-kafka-kafka-1 kafka-topics.sh --version
