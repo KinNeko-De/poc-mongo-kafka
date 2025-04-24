@@ -22,7 +22,7 @@ services:
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: '0@kafka:9093'
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
     healthcheck:
-      test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
+      test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server kafka:9092 || exit 1"]
       interval: 15s
       timeout: 10s
       retries: 10
