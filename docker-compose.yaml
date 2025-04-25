@@ -21,6 +21,7 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: 'BROKER:PLAINTEXT,CONTROLLER:PLAINTEXT'
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: '0@kafka:9093'
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_CFG_ADVERTISED_LISTENERS: 'BROKER://kafka:9092'
     healthcheck:
       test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server kafka:9092 || exit 1"]
       interval: 15s
