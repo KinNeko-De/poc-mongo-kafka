@@ -1,3 +1,5 @@
+name: kafka-cluster
+
 networks:
   app-tier:
     driver: bridge
