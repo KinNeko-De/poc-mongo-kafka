@@ -21,7 +21,7 @@ func main() {
 
 	// Kafka connection settings
 	brokers := []string{"localhost:9095"}
-	topic := "test"
+	topic := "test-kafka"
 
 	// Create a context with cancellation
 	ctx, cancel := context.WithCancel(context.Background())
@@ -87,16 +87,16 @@ func produceMessages(ctx context.Context, brokers []string, topic string) {
 func consumeMessages(ctx context.Context, brokers []string, topic string) {
 	// Create a reader with explicit timeout
 	reader := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:  brokers,
-		Topic:    topic,
-		MinBytes: 10e3, // 10KB
-		MaxBytes: 10e6, // 10MB
-		MaxWait:  1 * time.Second,
-		// GroupID:        "go-kafka-test-group-" + time.Now().Format("20060102150405"), // Use a unique group ID
+		Brokers:        brokers,
+		Topic:          topic,
+		MinBytes:       10e3, // 10KB
+		MaxBytes:       10e6, // 10MB
+		MaxWait:        100 * time.Second,
+		GroupID:        "go-kafka-test-group-" + time.Now().Format("20060102150405"), // Use a unique group ID
 		StartOffset:    kafka.FirstOffset,
-		SessionTimeout: 30 * time.Second,
+		SessionTimeout: 100 * time.Second,
 		ReadBackoffMin: 100 * time.Millisecond,
-		ReadBackoffMax: 1 * time.Second,
+		ReadBackoffMax: 100 * time.Second,
 	})
 	defer reader.Close()
 

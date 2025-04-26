@@ -5,23 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "consume",
+            "name": "produce-a",
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}/kafka-test/main.go",
-            "args": [
-                "consume"
-            ],
-            "showLog": true,
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "produce",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${workspaceFolder}/kafka-test/main.go",
+            "program": "${workspaceFolder}/kafka-go/main.go",
             "args": [
                 "produce"
             ],
@@ -29,13 +17,64 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "produceandconsume",
+            "name": "consume-a",
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}/article/main.go",
+            "program": "${workspaceFolder}/kafka-go/main.go",
+            "args": [
+                "consume"
+            ],
             "showLog": true,
             "console": "integratedTerminal"
-        }
+        },
+        {
+            "name": "produce-b",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/franz-go/main.go",
+            "args": [
+                "produce"
+            ],
+            "showLog": true,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "consume-b",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/franz-go/main.go",
+            "args": [
+                "consume"
+            ],
+            "showLog": true,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "produce-c",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/samara/main.go",
+            "args": [
+                "produce"
+            ],
+            "showLog": true,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "consume-c",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/samara/main.go",
+            "args": [
+                "consume"
+            ],
+            "showLog": true,
+            "console": "integratedTerminal"
+        },
     ]
 }
