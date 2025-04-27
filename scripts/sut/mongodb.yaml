@@ -5,9 +5,7 @@ networks:
 
 volumes:
   mongodb-db:
-    name: pv-datadb
   mongodb-configdb:
-    name: pv-dataconfigdb
 
 services:
   mongodb:
