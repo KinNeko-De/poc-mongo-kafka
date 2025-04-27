@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker compose -f sut/kafka.yaml up --build --remove-orphans --exit-code-from kafka
+param="$1"
+docker compose -f sut/kafka.yaml -f sut/mongodb.yaml up $param

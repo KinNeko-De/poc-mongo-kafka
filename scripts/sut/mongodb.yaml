@@ -1,0 +1,30 @@
+name: mongodb-cluster
+
+networks:
+  network:
+
+volumes:
+  mongodb-db:
+    name: pv-datadb
+  mongodb-configdb:
+    name: pv-dataconfigdb
+
+services:
+  mongodb:
+    image: mongo:latest
+    networks:
+      - network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongodb-db:/data/db
+      - mongodb-configdb:/data/configdb

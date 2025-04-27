@@ -1,8 +1,7 @@
 name: kafka-cluster
 
 networks:
-  app-tier:
-    driver: bridge
+  network:
 
 volumes:
   kafka-data:
@@ -13,7 +12,7 @@ services:
   kafka:
     image: 'bitnami/kafka:latest'
     networks:
-      - app-tier
+      - network
     ports:
       - '9095:9095'
     volumes:
@@ -41,7 +40,7 @@ services:
     ports:
       - '8080:8080'
     networks:
-      - app-tier
+      - network
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
       KAFKA_CLUSTERS_0_NAME: 'local'
@@ -54,7 +53,7 @@ services:
     ports:
       - '9000:9000'
     networks:
-      - app-tier
+      - network
     environment:
       KAFKA_BROKERCONNECT: 'kafka:9094'
     depends_on:
