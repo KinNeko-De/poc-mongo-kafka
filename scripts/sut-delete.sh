@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker compose -f sut/kafka.yaml -f sut/mongodb.yaml down --volumes --remove-orphans
+docker compose -p cluster -f sut/kafka.yaml -f sut/mongodb.yaml down --volumes --remove-orphans
