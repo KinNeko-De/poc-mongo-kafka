@@ -26,7 +26,7 @@ services:
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: 'BROKER'
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
       KAFKA_CLIENT_LISTENER_NAME: 'INTERNAL'
-      KAFKA_CFG_ADVERTISED_LISTENERS: 'BROKER://kafka:9092,INTERNAL://kafka:9094,EXTERNAL://localhost:9095'
+      KAFKA_CFG_ADVERTISED_LISTENERS: 'BROKER://kafka:9092,INTERNAL://kafka:9094,EXTERNAL://localhost:9095' # advertised to clients, broker needed for healthcheck
     healthcheck:
       test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server kafka:9092 || exit 1"]
       interval: 15s
