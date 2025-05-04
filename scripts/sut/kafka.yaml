@@ -34,9 +34,22 @@ services:
       retries: 10
       start_period: 10s
   kafka-ui:
-    image: 'provectuslabs/kafka-ui:latest'
+    image: 'kafbat/kafka-ui:latest'
     ports:
       - '8080:8080'
+    networks:
+      - network
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: 'local'
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 'kafka:9094'
+    depends_on:
+      kafka:
+        condition: service_healthy
+  kafka-ui-no-maintainer:
+    image: 'provectuslabs/kafka-ui:latest'
+    ports:
+      - '8081:8081'
     networks:
       - network
     environment:
